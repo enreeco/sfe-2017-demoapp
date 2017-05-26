@@ -1,0 +1,65 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global" controller="Demo02Controller">
+    
+    <aura:attribute name="limitResults" type="string" default="10" access="global" />
+    
+    <aura:attribute name="accountsList" type="List" default="[]" access="private" />
+    <aura:attribute name="selectedAccountId" type="ID" access="private" />
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+	<aura:registerEvent name="loadContactsEvt" type="c:Demo02ContactListUpdateEvt"/>
+
+    
+    <div class="slds-page-header slds-page-header--object-home">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+                <div class="slds-media slds-no-space slds-grow">
+                    <div class="slds-media__figure">
+                        <lightning:icon variant="bare" iconName="action:add_relationship" />
+                    </div>
+                    <div class="slds-media__body">
+                        <p class="slds-text-title--caps slds-line-height--reset">Milano Essentials 2017</p>
+                        <h1>Account Master 5000</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-no-flex slds-grid slds-align-top">   
+            </div>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap slds-grid_pull-padded ">
+        <div class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-p-around_large">
+            <div style="width:200px">&nbsp;</div>
+        </div>
+        <div class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-p-around_large">
+            <div class="slds-form slds-form_stacked slds-box fixedWidth">
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="input-id-01">Accounts</label>
+                    <div class="slds-form-element__control">
+                        <ui:inputselect aura:id="accListCmp" 
+                                        value="{!v.selectedAccountId}">
+                            <ui:inputSelectOption label="--" value=""/>
+                            <aura:iteration var="item" items="{!v.accountsList}">
+                                <ui:inputSelectOption label="{!item.Name}" value="{!item.Id}"/>
+                            </aura:iteration>
+                        </ui:inputselect>
+                    </div>
+                </div>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="input-id-02"></label>
+                    <div class="slds-form-element__control">
+                        <ui:button class="slds-button" 
+                                   press="{!c.selectAccount}">Show Contacts</ui:button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-p-around_large">
+            <div class="resultBox">
+                <c:Demo02ContactList />
+            </div>
+        </div>
+    </div>
+    
+</aura:component>

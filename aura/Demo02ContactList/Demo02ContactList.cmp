@@ -1,0 +1,64 @@
+<aura:component controller="Demo02Controller">
+    
+    <aura:attribute name="contactsList" type="List" default="[]" access="private"/>
+    <aura:attribute name="isLoading" type="Boolean" default="false" access="private"/>
+    <aura:handler event="c:Demo02ContactListUpdateEvt" action="{!c.updateContacts}" />
+
+        <aura:renderIf isTrue="{!!v.isLoading}">
+            
+            <aura:renderIf isTrue="{! !empty(v.contactsList) &amp;&amp; v.contactsList.length &gt; 0}">
+                
+                <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+                    <thead>
+                        <tr class="slds-text-title_caps">
+                            <th scope="col">
+                                <div class="slds-truncate" title="Contact First Name">First Name</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Contact Last Name">Last Name</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Contact Email">Email</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Contact Birth Date">Birth Date</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration var="item" items="{!v.contactsList}">
+                            <tr>
+                                <td data-label="Contact First Name">
+                                    <div class="slds-truncate" title="{!item.FirstName}">
+                                        <ui:outputText value="{!item.FirstName}" />
+                                    </div>
+                                </td>
+                                <td data-label="Contact Last Name">
+                                    <div class="slds-truncate" title="{!item.LastName}">
+                                        <ui:outputText value="{!item.LastName}" />
+                                    </div>
+                                </td>
+                                <td data-label="Contact Email">
+                                    <div class="slds-truncate" title="{!item.Email}">
+                                        <ui:outputText value="{!item.Email}" />
+                                    </div>
+                                </td>
+                                <td data-label="Contact Birth Date">
+                                    <div class="slds-truncate" title="{!item.Birthdate}">
+                                        <ui:outputDate format="dd/MM/yyyy" value="{!item.Birthdate}" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+                <aura:set attribute="else">
+                    <strong>No contacts.</strong>
+                </aura:set>
+            </aura:renderIf>
+            <aura:set attribute="else">
+                <strong>Loading...</strong>
+            </aura:set>
+        </aura:renderIf>
+
+</aura:component>

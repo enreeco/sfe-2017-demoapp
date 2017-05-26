@@ -1,0 +1,42 @@
+<aura:component implements="force:appHostable, flexipage:availableForAllPageTypes" access="global" >
+    <aura:attribute name="counter" type="Integer" default="0"/>
+    
+    <div class="slds-page-header slds-page-header--object-home">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+                <div class="slds-media slds-no-space slds-grow">
+                    <div class="slds-media__figure">
+                        <lightning:icon variant="bare" iconName="action:add_relationship" />
+                    </div>
+                    <div class="slds-media__body">
+                        <p class="slds-text-title--caps slds-line-height--reset">Milano Essentials 2017</p>
+                        <h1>Click it!</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-no-flex slds-grid slds-align-top">   
+            </div>
+        </div>
+    </div>
+    <div class="slds-grid slds-grid_align-space">
+        <div style="width:250px"></div>
+        <div class="slds-box">
+            <div class="slds-form slds-form_stacked">
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="input-id-01">Click here:</label>
+                    <div class="slds-form-element__control">
+                        <ui:button class="slds-button slds-button--brand" label="Click me" press="{!c.handleClick}"/>
+                    </div>
+                </div>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="input-id-02">Counter:</label>
+                    <div class="slds-form-element__control">
+                        <div>Count: <strong>{!v.counter}</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</aura:component>
